@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="style.css"
+            rel="stylesheet"
+            type="text/css"/>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>lab05</title>
+</head>
+<style>
+
+
+
+    p    {color: rgb(13, 76, 214);}
+</style>
+
+
+<body>
+
+  <center>
+    <br><br>
+    <p><font size = "7">Choose the User you want to check</font></p>
+    <form action="ViewUserPosts.php" method="post">
+    <?php
+    $mysqli=new mysqli("mysql.eecs.ku.edu","h539j862","jhw2900031","h539j862");
+
+    $result = $mysqli->query("SELECT user_id FROM Users ");
+?>
+
+    <select name="Users">
+    <?php
+while($rows = $result->fetch_assoc())
+{
+     $user=$rows['user_id'];
+     echo "<option value='$user'>$user</option>";
+
+}
+
+?>
+
+</select>
+<br>
+<input type="submit">
+<br>
+
+
+
+</form>
+</body>
+
+</html>

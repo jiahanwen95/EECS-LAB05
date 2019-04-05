@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>Viewuserposts</title>
+    </head>
+
+    <body>
+        <center>
+        <form action="DeletePost.php" method="post">
+                <table  border="1" cellspacing="0" cellpadding="0">
+                    <caption>Posts</caption>
+                        <th>author</th>
+                        <th>content</th>
+                        <select name="Content">
+                        <?php
+                            $mysqli=new mysqli("mysql.eecs.ku.edu","h539j862","jhw2900031","h539j862");
+                            $exec="select * from Posts";
+                            $result=$mysqli->query($exec);
+                            while($rs=mysqli_fetch_object($result)){
+                                $id=$rs->author_id;
+                                $content=$rs->content;
+
+                        ?>
+                    <tr align="center">
+                    <td><?php echo $id; ?></td>
+                    <td><?php echo $content; ?></td>
+                    <td><?php echo '<input type="checkbox" name="content[]" value="'.$content.'">';
+
+                    ?></td>
+                   </select>
+
+                </tr>
+                <?php
+                    }
+                    mysqli_close();
+                ?>
+                </table>
+                <input type="submit">
+        </center>
+        </form>
+    </body>
+</html>
